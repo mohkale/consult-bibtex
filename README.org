@@ -1,0 +1,46 @@
+#+TITLE: consult-bibtex
+#+AUTHOR: Mohsin Kaleem
+
+
+
+A [[https://github.com/minad/consult][consult]]ing-read interface for [[https://github.com/tmalsburg/helm-bibtex][bibtex-completion]].
+
+#+CAPTION: Obligatory screenshot of consult-bibtex in action. (Note color support isn't in mainline =bibtex-completion= yet, see [[https://github.com/tmalsburg/helm-bibtex/pull/375][#375]])
+[[file:.github/demo.png]]
+
+* Installation
+** Manually
+   1. Clone the repo.
+   2. Add the repo path to your emacs ~load-path~.
+   3. Load it when needed.
+
+** From MELPA
+   TODO: MELPA support.
+
+** straight
+   You can also install this package through the [[https://github.com/raxod502/straight.el][straight]] package manager.
+   #+begin_src emacs-lisp
+     (straight-use-package '(consult-bibtex :host github
+                                            :repo "mohkale/consult-bibtex"))
+   #+end_src
+
+* Configuration
+  This package should work out of the box. Simply run ~M-x consult-bibtex~ to
+  interactively select bibtex entries.
+  The file [[file:consult-bibtex-embark.el][consult-bibtex-embark.el]] provides several commands that can be used
+  alongside ~consult-bibtex~. By default the command ~consult-bibtex-insert-citation~ is
+  run when you select a bibtex entry but you can configure this with
+  ~consult-bibtex-default-action~.
+
+  This package exposes a map you can use alongside ~embark-act~ called ~consult-bibtex-embark-map~
+  however embark isn't setup automatically. You can do so manually by simply adding
+  this map to ~embark-keymap-alist~.
+  #+begin_src emacs-lisp
+    (with-eval-after-load 'embark
+      (add-to-list 'embark-keymap-alist '(bibtex-completion . consult-bibtex-embark-map)))
+  #+end_src
+
+* Appendix                                                          :ARCHIVE:
+# Local Variables:
+# eval: (toc-org-mode 1)
+# End:
